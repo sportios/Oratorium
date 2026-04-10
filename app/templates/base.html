@@ -1,0 +1,61 @@
+<!-- Ораториум/app/templates/base.html -->
+
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ОраториУМ{% endblock %}</title>
+    
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Bootstrap Icons для VR-иконки -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Наши стили -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    {% block scripts_head %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        <!-- ========================== -->
+        <!-- ШАПКА САЙТА (HEADER)       -->
+        <!-- ========================== -->
+        <header class="header">
+            <div class="logo">
+                <a href="/" class="logo-link">
+                    <i class="bi bi-headset-vr logo-icon"></i>
+                    <span class="logo-text">Оратори<span class="logo-accent">УМ</span></span>
+                </a>
+            </div>
+            
+            <!-- Переключатель темы -->
+            <button id="theme-toggle" class="theme-btn">
+                <i class="fas fa-moon"></i>
+                <span>Тёмная тема</span>
+            </button>
+        </header>
+
+        <!-- Основной контент -->
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Подвал -->
+        <footer class="footer">
+            <p>© 2026 ОраториУМ — VR-тренажер для публичных выступлений</p>
+        </footer>
+    </div>
+
+    <!-- Основные скрипты -->
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block scripts_body %}{% endblock %}
+</body>
+</html>
+

@@ -1,0 +1,66 @@
+<!-- Ораториум/app/templates/menu.html -->
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главное меню - ОраториУМ{% endblock %}
+
+{% block scripts_head %}
+<script>
+    window.userName = "{{ user_name|default:'Гость' }}";
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="main-menu">
+    <!-- Заголовок и подзаголовок -->
+    <div class="menu-header">
+        <h1 class="menu-title">Добро пожаловать в ОраториУМ!</h1>
+        <p class="menu-subtitle">Твой персональный VR-тренер для публичных выступлений</p>
+    </div>
+
+    <!-- Блок с двумя большими кнопками -->
+    <div class="menu-actions">
+        <!-- Кнопка "Начать тренировку" -->
+        <div class="menu-card practice-card" id="start-practice">
+            <div class="card-icon">
+                <i class="fas fa-play"></i>
+            </div>
+            <div class="card-content">
+                <h2>Начать тренировку</h2>
+                <p>Выбери сценарий, надень VR-шлем и начни выступать перед виртуальной аудиторией</p>
+            </div>
+            <div class="card-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+
+        <!-- Кнопка "История сессий" -->
+        <div class="menu-card history-card" id="history-sessions">
+            <div class="card-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="card-content">
+                <h2>История сессий</h2>
+                <p>Посмотри свои прошлые выступления, изучи прогресс и получи персональные рекомендации</p>
+            </div>
+            <div class="card-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Дополнительная информация -->
+    <div class="menu-footer">
+        <div class="fun-fact">
+            <i class="fas fa-quote-right"></i>
+            <p>Лучший способ побороть страх — это практика в безопасной среде. Ты в правильном месте!</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts_body %}
+<script src="{% static 'js/menu.js' %}"></script>
+{% endblock %}
+

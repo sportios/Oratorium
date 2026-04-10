@@ -1,0 +1,92 @@
+<!-- Ораториум/app/templates/history.html -->
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}История тренировок - ОраториУМ{% endblock %}
+
+{% block scripts_head %}
+<script>
+    window.djangoSessions = {{ sessions_json|safe }};
+    window.sessionsCount = {{ sessions_count }};
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="history-page">
+    <!-- Шапка страницы -->
+    <div class="header-section">
+        <div class="header-row">
+            <h1 class="page-title">
+                <i class="fas fa-history"></i>
+                История выступлений
+            </h1>
+        </div>
+        
+        <div class="header-row header-controls">
+            <!-- Счетчик сессий -->
+            <div class="session-count" id="session-count">
+                Всего сессий: {{ sessions_count }}
+            </div>
+            
+            <!-- Элементы управления сортировкой -->
+            <div class="sort-controls">
+                <span class="sort-label">Сортировка:</span>
+                <button class="sort-btn" data-sort="date" data-order="desc" id="sort-date">
+                    <span>Дата</span>
+                    <i class="fas fa-sort-down"></i>
+                </button>
+                <button class="sort-btn" data-sort="score" data-order="desc" id="sort-score">
+                    <span>Баллы</span>
+                    <i class="fas fa-sort"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Таблица с сессиями -->
+    <div class="card">
+        <div class="table-responsive">
+            <table class="sessions-table" id="sessions-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название сессии</th>
+                        <th>Дата и время</th>
+                        <th>Длительность</th>
+                        <th>Оценка</th>
+                    </tr>
+                </thead>
+                <tbody id="sessions-body">
+                    <!-- Данные будут вставлены через JavaScript -->
+                </tbody>
+            </table>
+            
+            <!-- Сообщение, когда нет ни одной сессии -->
+            <div id="no-sessions-message" class="empty-state" style="display: none;">
+                <div class="empty-icon">
+                    <i class="fas fa-microphone-slash"></i>
+                </div>
+                <h3>Пока нет проведённых тренировок</h3>
+                <p>Добавьте первую сессию через админку Django</p>
+            </div>
+        </div>
+
+        <!-- Пагинация -->
+        <div class="pagination" id="pagination" style="display: none;">
+            <button class="page-btn prev-btn" id="prev-page" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="page-info" id="page-info">Страница 1 из 1</div>
+            <button class="page-btn next-btn" id="next-page" disabled>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts_body %}
+<script src="{% static 'js/history.js' %}"></script>
+{% endblock %}
+
